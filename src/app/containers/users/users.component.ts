@@ -12,10 +12,14 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
   users$ = this._store.pipe(select(selectUserList));
+  
 
-  constructor(private _store: Store<IAppState>, private _router: Router) {}
+  constructor(private _store: Store<IAppState>, private _router: Router) {
+  console.log("rrrrrrrrrrr", this.users$);
+  }
 
   ngOnInit() {
+  console.log("rrrrrrrrrrr", this.users$);
     this._store.dispatch(new GetUsers());
   }
 

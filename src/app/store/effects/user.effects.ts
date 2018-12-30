@@ -10,11 +10,12 @@ import {
   EUserActions,
   GetUserSuccess,
   GetUser,
-  GetUsers
+  GetUsers,
+  GetFixedUsers
 } from '../actions/user.actions';
 import { UserService } from '../../services/user.service';
 import { IUserHttp } from '../../models/http-models/user-http.interface';
-import { selectUserList } from '../selectors/user.selector';
+import { selectUserList, selectFixedUserList } from '../selectors/user.selector';
 
 @Injectable()
 export class UserEffects {
@@ -34,6 +35,13 @@ export class UserEffects {
     ofType<GetUsers>(EUserActions.GetUsers),
     switchMap(() => this._userService.getUsers()),
     switchMap((userHttp: IUserHttp) => of(new GetUsersSuccess(userHttp.users)))
+  );
+
+  @Effect()
+  getFixedUsers$ = this._actions$.pipe(
+    ofType<GetFixedUsers>(EUserActions.GetFixedUser),
+    switchMap(() => this._userService.getUsers()),
+    switchMap((userHttp: IUserHttp) => of(new GetFixedUser(userHttp.users)))
   );
 
   constructor(

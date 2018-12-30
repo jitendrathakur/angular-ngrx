@@ -7,9 +7,10 @@ export const userReducers = (
   action: UserActions
 ): IUserState => {
   switch (action.type) {
-    case EUserActions.GetUsersSuccess: {
+    case EUserActions.GetUsersSuccess: {  
+    
       return {
-        ...state,
+        state,
         users: action.payload
       };
     }
@@ -19,7 +20,22 @@ export const userReducers = (
         selectedUser: action.payload
       };
     }
-
+    case EUserActions.AddUser: {
+      let users = state.users;
+      users.push(action.payload);
+        return {
+          ...state,
+          users: users
+        };
+    }
+    case EUserActions.GetFixedUser: {
+      const newState = _.cloneDeep(state)
+      newState.prop = action.payload
+      return {
+        ...state,
+        users: action.payload
+      };
+    }
     default:
       return state;
   }

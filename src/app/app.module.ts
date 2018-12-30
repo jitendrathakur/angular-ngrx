@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { appReducers } from './store/reducers/app.reducers';
 import { environment } from '../environments/environment';
@@ -33,7 +34,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     EffectsModule.forRoot([UserEffects, ConfigEffects]),
     StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

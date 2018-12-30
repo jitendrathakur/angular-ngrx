@@ -10,6 +10,11 @@ export const selectUserList = createSelector(
   (state: IUserState) => state.users
 );
 
+export const selectFixedUserList = createSelector(
+  selectUsers,
+  (state: IUserState) => state.users
+);
+
 export const selectSelectedUser = createSelector(
   selectUsers,
   (state: IUserState) => state.selectedUser
