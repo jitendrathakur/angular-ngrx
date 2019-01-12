@@ -14,17 +14,16 @@ import { GetUsers, GetFixedUser } from './../../store/actions/user.actions';
 })
 export class UsersComponent implements OnInit {
   registerForm: FormGroup;
-  submitted = false;
+  submitted = false;  
   @Input()
   users: IUser[];  
   copyusers: any;
 
   @Output()
   userSelected: EventEmitter<number> = new EventEmitter();
-  const copyusers = this._store.pipe(select(selectUserList));
-  //copyusers = this._store.dispatch({type: "GetFixedUser"});
+  copyusers = this._store.pipe(select(selectUserList));  
   constructor(private _store: Store<IAppState>, private formBuilder: FormBuilder) {
-    console.log(this.copyusers)
+    
   }
   
   ngOnInit() {    
@@ -64,4 +63,12 @@ export class UsersComponent implements OnInit {
   navigateToUser(id: number) {
     this.userSelected.emit(id);
   }
+
+  editUser(id: number) {
+    console.log(id);
+    this._store.select('id').subscribe(data) => {
+      console.log(data); 
+    });
+  }
+
 }

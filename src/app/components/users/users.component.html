@@ -37,12 +37,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users"
-      (click)="navigateToUser(user.id)">
+    <tr *ngFor="let user of users">
       <td>{{ user.id }}</td>
       <td>{{ user.name }}</td>
       <td>{{ user.cardNumber }}</td>
       <td>{{ user.cardType }}</td>
+      <td><a href="javascript:;" (click)="navigateToUser(user.id)">View</a></td>
+      <td><a href="javascript:;" (click)="editUser(user.id)">Edit</a></td>
     </tr>
   </tbody>
 </table>

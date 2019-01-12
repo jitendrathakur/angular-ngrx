@@ -26,4 +26,8 @@ export class UsersComponent implements OnInit {
   navigateToUser(id: number) {
     this._router.navigate(['user', id]);
   }
+
+  editUser(id: number) {
+    console.log(id);
+  }
 }
